@@ -11,6 +11,27 @@ testdata = pd.read_csv("Experience-Salary701.csv")
 trainexp = traindata['exp(in months)']
 trainsalary = traindata['salary(in thousands)']
 
-print(trainexp.head())
-print(trainsalary.head())
+testexp = testdata['exp(in months)']
+testsalary = testdata['salary(in thousands)']
+
+#print(trainexp.tail())
+#print(trainsalary.tail())
+
+#print(testexp.tail())
+#print(testsalary.tail())
+
+regr = LinearRegression()
+regr.fit(trainexp.values.reshape(trainexp.size, 1), trainsalary)
+
+
+print("Intercept: ", regr.intercept_)
+print("Slope: ", regr.coef_[0])
+
+def get_regression_predictions(input_feature, intercept, slope):
+    predicted_values = intercept + slope*input_feature
+    return predicted_values
+
+my_job_exp = 20.50
+estimated_salary = get_regression_predictions(my_job_exp, regr.intercept_, regr.coef_[0])
+print('O salario anual estimado de alguém com',my_job_exp,'meses de experiência é',(estimated_salary*1000),'dolares')
 
