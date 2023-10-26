@@ -1,9 +1,12 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
+
 
 
 #SEPARANDO O DATASET EM 2, UM PARA TREINAMENTO, OUTRO PARA TESTE, PROPORÇÃO de 70/30
+#LEMBRANDO QUE AO RODAR ESSE CÓDIGO SERÃO CRIADOS DUAS PLANILHAS, CASO ELAS JÁ EXISTAM
+#SERÁ REALIZADO UM APPEND AO FINAL DELAS, CUIDADO PARA NÃO COMPROMETER OS DADOS
+#CASO FOR RODAR O PROGRAMA, EXCLUA AS PLANILHAS 'Experience-Salary1.csv' e 'Experience-Salary701.csv' PRIMEIRO
 
 expdata = 'Experience-Salary.csv'   #atribuindo o csv a uma variável
 
@@ -15,13 +18,3 @@ for i in range(1, number_lines, rowsize): #loop para separar o documento
     df = pd.read_csv(expdata, header=0, nrows = rowsize, skiprows = i) #lendo o arquivo com algumas definições, pulando i linhas para não repetir linhas
     out_csv = 'Experience-Salary' + str(i) + '.csv' #definindo nome do arquivo de saida
     df.to_csv(out_csv, index=False, header=['exp(in months)','salary(in thousands)'], mode='a', chunksize=rowsize) #parametrizando os arquivos de saida
-
-
-
-
-
-
-
-
-
-
