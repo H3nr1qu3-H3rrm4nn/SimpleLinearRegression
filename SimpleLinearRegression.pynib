@@ -1,37 +1,37 @@
 import pandas as pd
-import numpy as np
+import numpy as np                                     #IMPORTANDO BIBLIOTECAS
 from sklearn.linear_model import LinearRegression
 
-traindata = pd.read_csv("Experience-Salary1.csv")
-testdata = pd.read_csv("Experience-Salary701.csv")
+traindata = pd.read_csv("Experience-Salary1.csv")   #atribuindo o arquivo de treino a variável traindata
+testdata = pd.read_csv("Experience-Salary701.csv")  #atribuindo o arquivo de teste a variável testdata
 
-#print(traindata.tail())
+#print(traindata.tail())  #prints para visualização e teste
 #print(testdata.tail())
 
-trainexp = traindata['exp(in months)']
-trainsalary = traindata['salary(in thousands)']
+trainexp = traindata['exp(in months)']  #atribuiundo o atributo/coluna 'exp(in months)' da planilha de treino a variavel trainexp
+trainsalary = traindata['salary(in thousands)'] #atribuiundo o atributo/coluna 'salary(in thousands)' da planilha de treino a variavel trainexp
 
-testexp = testdata['exp(in months)']
-testsalary = testdata['salary(in thousands)']
+testexp = testdata['exp(in months)']    #atribuiundo o atributo/coluna 'exp(in months)' da planilha de teste a variavel testnexp
+testsalary = testdata['salary(in thousands)']   #atribuiundo o atributo/coluna 'exp(in months) da planilha de teste a variavel testexp
 
-#print(trainexp.tail())
+#print(trainexp.tail())     #prints para visualização e teste
 #print(trainsalary.tail())
 
 #print(testexp.tail())
 #print(testsalary.tail())
 
-regr = LinearRegression()
-regr.fit(trainexp.values.reshape(trainexp.size, 1), trainsalary)
+regr = LinearRegression()   #criando o objeto com métodos de LinearRegression
+regr.fit(trainexp.values.reshape(trainexp.size, 1), trainsalary)    #fazendo o fit com trainxp e trainsalary
 
 
-print("Intercept: ", regr.intercept_)
+print("Intercept: ", regr.intercept_)   #print do Intercep e do Slope após o fit
 print("Slope: ", regr.coef_[0])
 
-def get_regression_predictions(input_feature, intercept, slope):
+def get_regression_predictions(input_feature, intercept, slope):    #função para prediçao do valor do salário baseado na experiencia
     predicted_values = intercept + slope*input_feature
     return predicted_values
 
-my_job_exp = 20.50
-estimated_salary = get_regression_predictions(my_job_exp, regr.intercept_, regr.coef_[0])
-print('O salario anual estimado de alguém com',my_job_exp,'meses de experiência é',(estimated_salary*1000),'dolares')
+my_job_exp = 20.50                                          #colocando experiencia em meses para ser realizada uma predicao
+estimated_salary = get_regression_predictions(my_job_exp, regr.intercept_, regr.coef_[0]) #funçao de predicao do salário e atribuindo o retorno a estimated_salary
+print('O salario anual estimado de alguém com',my_job_exp,'meses de experiência é',(estimated_salary*1000),'dolares')   #printando predicao
 
