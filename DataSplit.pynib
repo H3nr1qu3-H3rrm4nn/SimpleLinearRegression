@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+
+#SEPARANDO O DATASET EM 2, UM PARA TREINAMENTO, OUTRO PARA TESTE PROPORÇÃO 70/30
+
+expdata = 'Experience-Salary.csv'   
+number_lines = sum(1 for row in (open(expdata)))
+
+rowsize = 700
+
+for i in range(1, number_lines, rowsize):
+    df = pd.read_csv(expdata, header=1, nrows = rowsize, skiprows = i)
+    out_csv = 'Experience-Salary' + str(i) + '.csv'
+    df.to_csv(out_csv, index=False, header=['exp(in months)','salary(in thousands)'], mode='a', chunksize=rowsize)
+
+
+
+
+
+
+
+
+
+
