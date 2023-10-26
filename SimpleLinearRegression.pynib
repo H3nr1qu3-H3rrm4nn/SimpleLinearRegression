@@ -2,3 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
+train = pd.read_csv("Experience-Salary1.csv")
+test = pd.read_csv("Experience-Salary701.csv")
+
+print(head.train_Experience-Salary)
+print(head.test_Experience-Salary)
