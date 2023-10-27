@@ -31,7 +31,7 @@ def get_regression_predictions(input_feature, intercept, slope):    #função pa
     predicted_values = intercept + slope*input_feature
     return predicted_values
 
-my_job_exp = 20.50                                          #colocando experiencia em meses para ser realizada uma predicao
+my_job_exp = 60          #colocando experiencia em meses para ser realizada uma predicao
 estimated_salary = get_regression_predictions(my_job_exp, regr.intercept_, regr.coef_[0]) #funçao de predicao do salário e atribuindo o retorno a estimated_salary
 print('O salario anual estimado de alguém com',my_job_exp,'meses de experiência é',(estimated_salary*1000),'dolares')   #printando predicao
 
